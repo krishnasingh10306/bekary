@@ -1,0 +1,146 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section class="hero about-hero">
+  <div class="about-hero-grid">
+    <div class="hero-copy about-copy">
+      <span class="status-pill">Our story</span>
+      <h1>Krishna Ki Bekary</h1>
+      <p>We started with a simple goal: make brownies that taste deeply chocolatey, arrive beautifully, and feel special enough for gifting without losing the comfort of a fresh-baked treat.</p>
+      <div class="hero-stats about-stats">
+        <div class="stat">
+          <strong>10K+</strong>
+          <span>Boxes delivered</span>
+        </div>
+        <div class="stat">
+          <strong>50+</strong>
+          <span>Signature flavors</span>
+        </div>
+        <div class="stat">
+          <strong>99%</strong>
+          <span>Freshness focus</span>
+        </div>
+      </div>
+      <div class="hero-buttons">
+        <a class="button button-primary" href="{{ url_for('menu') }}">Explore Menu</a>
+        <a class="button button-secondary" href="{{ url_for('checkout') }}">Start Order</a>
+      </div>
+    </div>
+    <div class="hero-visual about-visual">
+      <div class="about-card highlight-card">
+        <img src="/static/images/cake-black-forest.png" alt="Fresh cakes and brownies on a bakery counter" />
+      </div>
+      <div class="about-card flavor-card">
+        <div class="card-label">Best seller</div>
+        <h3>Champagne Fudge Brownie</h3>
+        <p>Rich cocoa, a glossy finish, and a celebratory topping for a polished signature bite.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section about-values">
+  <div class="section-title">
+    <div>
+      <h2>What makes us different</h2>
+      <p>Handcrafted baking, premium ingredients, and an ordering flow that respects the customer from menu to delivery.</p>
+    </div>
+  </div>
+  <div class="values-grid">
+    <div class="value-card">
+      <div class="value-icon"></div>
+      <h3>Fresh ingredients</h3>
+      <p>We use real chocolate, fresh fruits, premium dairy, and balanced toppings.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon"></div>
+      <h3>Elegant packaging</h3>
+      <p>Every order is boxed neatly so it feels ready for the table or a thoughtful gift.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon"></div>
+      <h3>Reliable delivery</h3>
+      <p>Order tracking and careful handling help every brownie arrive in great condition.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section about-story">
+  <div class="section-title">
+    <div>
+      <h2>Our journey</h2>
+      <p>From a home kitchen recipe to a bakery built around dependable quality.</p>
+    </div>
+  </div>
+  <div class="about-story-grid">
+    <div class="story-panel">
+      <span>2018</span>
+      <h3>The first recipe</h3>
+      <p>We began with one oven, a chocolate-heavy base recipe, and a focus on fudgy texture.</p>
+    </div>
+    <div class="story-panel">
+      <span>2020</span>
+      <h3>A growing menu</h3>
+      <p>Customer requests shaped new fruit, caramel, coffee, nut, and celebration flavors.</p>
+    </div>
+    <div class="story-panel">
+      <span>2024</span>
+      <h3>Delivery built in</h3>
+      <p>We expanded into fast checkout, account orders, and delivery tracking for a smoother experience.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-title">
+    <div>
+      <h2>Meet the team</h2>
+      <p>The bakers and delivery crew behind each box.</p>
+    </div>
+  </div>
+  <div class="bakers-grid">
+    <article class="baker-card">
+      <div class="baker-image">
+        <img src="/static/images/cake-red-velvet.png" alt="Chef Isabella red velvet cake">
+      </div>
+      <div class="baker-content">
+        <h3>Chef Isabella</h3>
+        <p>Head baker and recipe lead, focused on texture, balance, and finish.</p>
+      </div>
+    </article>
+    <article class="baker-card">
+      <div class="baker-image">
+        <img src="/static/images/cake-fruit.png" alt="Baker Sophia fresh fruit cake">
+      </div>
+      <div class="baker-content">
+        <h3>Baker Sophia</h3>
+        <p>Decoration specialist for toppings, packaging, and seasonal box design.</p>
+      </div>
+    </article>
+    <article class="baker-card">
+      <div class="baker-image">
+        <img src="/static/images/cake-mango.png" alt="Gift-ready mango cake delivery box">
+      </div>
+      <div class="baker-content">
+        <h3>Delivery team</h3>
+        <p>Friendly, careful, and focused on getting each order to the door fresh.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="section cta-section about-cta">
+  <div class="cta-card">
+    <div class="cta-content">
+      <h2>Bring home the signature box.</h2>
+      <p>Order your favorite brownies now and let us prepare a polished box for any occasion.</p>
+      <div class="cta-buttons">
+        <a class="button button-primary" href="{{ url_for('menu') }}">View Menu</a>
+        <a class="button button-secondary" href="{{ url_for('checkout') }}">Start Order</a>
+      </div>
+    </div>
+    <div class="cta-visual" aria-hidden="true">
+      <img src="/static/images/pink-brownie-photo-2.png" alt="">
+    </div>
+  </div>
+</section>
+{% endblock %}

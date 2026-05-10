@@ -1,0 +1,71 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section class="section">
+  <div class="section-title">
+    <div>
+      <h2>Complete your order</h2>
+      <p>Review your brownie box, add delivery details, and place your order securely.</p>
+    </div>
+  </div>
+  <div class="checkout-grid">
+    <aside class="panel-card order-summary">
+      <h3>Order summary</h3>
+      <div id="cart-items" class="cart-items-list"></div>
+      <div class="order-summary-footer">
+        <div class="summary-line"><span>Subtotal</span><span id="cart-subtotal">₹0</span></div>
+        <div class="summary-line"><span>Delivery fee</span><span id="delivery-fee">₹99</span></div>
+        <div class="summary-line total"><span>Total</span><span id="cart-total">₹0</span></div>
+      </div>
+      <div class="delivery-info">
+        <h4>Delivery promise</h4>
+        <ul>
+          <li>Fresh brownies prepared for your order</li>
+          <li>Careful packaging for gifting or serving</li>
+          <li>Free delivery on orders over ₹2,000</li>
+          <li>Tracking available after checkout</li>
+        </ul>
+      </div>
+    </aside>
+    <div class="panel-card">
+      <h3>Delivery details</h3>
+      <form id="checkout-form">
+        <div class="form-group">
+          <div class="form-row">
+            <label>Full name<input type="text" name="customerName" placeholder="Your full name" required></label>
+            <label>Email<input type="email" name="email" placeholder="your@email.com" required {% if user %} value="{{ user.email }}" {% endif %}></label>
+          </div>
+          <div class="form-row">
+            <label>Phone<input type="tel" name="phone" placeholder="+91 98765 43210" required></label>
+            <label>City<input type="text" name="city" placeholder="Bengaluru" required></label>
+          </div>
+          <label>Delivery address<input type="text" name="address" placeholder="Street address, apartment, etc." required></label>
+          <label>PIN code<input type="text" name="postalCode" placeholder="560001" required></label>
+          <label>Delivery notes<textarea name="deliveryInstructions" placeholder="Flat number, landmark, gate code, or special instructions" rows="3"></textarea></label>
+        </div>
+
+        <h3>Payment information</h3>
+        <div class="form-group">
+          <label>Payment method<select name="paymentMethod">
+            <option value="UPI">UPI</option>
+            <option value="Card">Credit or debit card</option>
+            <option value="Cash on delivery">Cash on delivery</option>
+          </select></label>
+          <div id="card-fields" class="card-fields">
+            <label>Card number<input type="text" name="cardNumber" placeholder="1234 5678 9012 3456"></label>
+            <div class="form-row">
+              <label>Expiry<input type="text" name="expiry" placeholder="MM/YY"></label>
+              <label>CVC<input type="text" name="cvc" placeholder="123"></label>
+            </div>
+          </div>
+        </div>
+
+        <input type="hidden" id="cart-data" name="cart" />
+        <div class="checkout-actions">
+          <button class="button button-primary" type="submit">Place Order</button>
+          <p class="checkout-note">Your payment details are used only for this demo checkout flow.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

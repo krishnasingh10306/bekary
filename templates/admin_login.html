@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section class="section">
+  <div class="login-card card">
+    <h2>Admin Login</h2>
+    {% if message %}
+      <div class="form-message">{{ message }}</div>
+    {% endif %}
+    <form method="post" action="{{ url_for('admin_login') }}">
+      <label>Email<input type="email" name="email" required></label>
+      <label>Password<input type="password" name="password" required></label>
+      <button class="button button-primary" type="submit">Login as admin</button>
+    </form>
+    <p class="login-note">Demo: admin@example.com / admin123</p>
+  </div>
+</section>
+{% endblock %}

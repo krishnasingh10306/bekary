@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section class="section">
+  <div class="auth-container">
+    <div class="auth-tabs">
+      <button class="auth-tab active" onclick="showTab('login')">Sign In</button>
+      <button class="auth-tab" onclick="showTab('signup')">Create Account</button>
+    </div>
+
+    <div id="login-tab" class="auth-tab-content active">
+      <div class="login-card card">
+        <h2>Welcome back</h2>
+        {% if message %}
+          <div class="form-message">{{ message }}</div>
+        {% endif %}
+        <form id="loginForm" method="post" action="{{ url_for('login') }}" class="form-group">
+          <label>Email<input type="email" name="email" id="login-email" required></label>
+          <button type="button" id="sendOtpBtn" class="button button-primary">Send OTP</button>
+          <label>OTP<input type="text" name="otp" id="login-otp" required></label>
+          <button class="button button-primary" type="submit">Verify and Login</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="signup-tab" class="auth-tab-content">
+      <div class="login-card card">
+        <h2>Create your account</h2>
+        <div id="signup-message"></div>
+        <form id="signupForm">
+          <div class="form-group">
+            <label>Full name<input type="text" name="name" id="signup-name" required></label>
+            <label>Email address<input type="email" name="email" id="signup-email" required></label>
+            <label>Phone number<input type="tel" name="phone" id="signup-phone" placeholder="+91 98765 43210" required></label>
+            <label>Street address<input type="text" name="address" id="signup-address" placeholder="12 Brigade Road" required></label>
+            <div class="form-row">
+              <label>City<input type="text" name="city" id="signup-city" placeholder="Bengaluru" required></label>
+              <label>State<input type="text" name="state" id="signup-state" placeholder="Karnataka" required></label>
+            </div>
+            <label>PIN code<input type="text" name="postal_code" id="signup-postal" placeholder="560001" required></label>
+            <button type="button" id="signupBtn" class="button button-primary">Create Account</button>
+          </div>
+        </form>
+        <p class="auth-note">After signup, use Send OTP to sign in.</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

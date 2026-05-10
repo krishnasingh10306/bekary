@@ -1,0 +1,98 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section class="section cake-variety-section">
+  <div class="section-title">
+    <div>
+      <h2>Cake varieties</h2>
+      <p>Instant cake delivery for celebrations</p>
+    </div>
+  </div>
+  <div class="cake-category-strip">
+    <button class="cake-category-card" onclick="addToCart(1)">
+      <img src="/static/images/cake-mango.png" alt="Mango cake">
+      <span>Mango Cakes</span>
+    </button>
+    <button class="cake-category-card" onclick="addToCart(2)">
+      <img src="/static/images/cake-chocolate.png" alt="Chocolate cake">
+      <span>Chocolate Cakes</span>
+    </button>
+    <button class="cake-category-card" onclick="addToCart(4)">
+      <img src="/static/images/cake-red-velvet.png" alt="Red velvet cake">
+      <span>Red Velvet Cakes</span>
+    </button>
+    <button class="cake-category-card" onclick="addToCart(25)">
+      <img src="/static/images/pink-brownie-photo-4.png" alt="Truffle cake">
+      <span>Truffle Cakes</span>
+    </button>
+    <button class="cake-category-card" onclick="addToCart(19)">
+      <img src="/static/images/cake-mango.png" alt="Pineapple cake">
+      <span>Pineapple Cakes</span>
+    </button>
+    <button class="cake-category-card" onclick="addToCart(35)">
+      <img src="/static/images/pink-brownie-photo-2.png" alt="Cheesecake">
+      <span>Cheesecakes</span>
+    </button>
+    <button class="cake-category-card" onclick="addToCart(46)">
+      <img src="/static/images/cake-fruit.png" alt="Fresh fruit cake">
+      <span>Fresh Fruit Cakes</span>
+    </button>
+    <button class="cake-category-card" onclick="addToCart(47)">
+      <img src="/static/images/cake-black-forest.png" alt="Black forest cake">
+      <span>Black Forest Cakes</span>
+    </button>
+    <button class="cake-category-card" onclick="addToCart(42)">
+      <img src="/static/images/pink-brownie-photo-1.png" alt="Fusion cake">
+      <span>Fusion Cakes</span>
+    </button>
+  </div>
+</section>
+
+<section class="section menu-hero-section">
+  <div class="section-title">
+    <div>
+      <h2>Full brownie menu</h2>
+      <p>Browse 50 unique flavors, from classic fudge to fruit, nut, caramel, coffee, and seasonal favorites.</p>
+    </div>
+  </div>
+  <div class="slider-wrapper">
+    <button class="slider-control left" id="sliderPrev" aria-label="Previous featured brownie">&lsaquo;</button>
+    <div class="menu-slider" id="productSlider">
+      {% for product in products[:8] %}
+      <article class="slider-card">
+        <img src="{{ product.image }}" alt="{{ product.name }}">
+        <div class="slider-copy">
+          <h3>{{ product.name }}</h3>
+          <p>{{ product.description }}</p>
+          <strong>{{ product.price|inr }}</strong>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    <button class="slider-control right" id="sliderNext" aria-label="Next featured brownie">&rsaquo;</button>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-title">
+    <div>
+      <h2>All brownies</h2>
+      <p>Pick your favorites and build a box for yourself, a team, or a gift.</p>
+    </div>
+  </div>
+  <div class="menu-grid">
+    {% for product in products %}
+    <article class="menu-card">
+      <img class="card-photo" src="{{ product.image }}" alt="{{ product.name }}">
+      <div class="menu-content">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.description }}</p>
+        <div class="menu-row">
+          <strong>{{ product.price|inr }}</strong>
+          <button class="add-button" onclick="addToCart({{ product.id }})">Add to Cart</button>
+        </div>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

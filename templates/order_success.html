@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section class="section">
+  <div class="panel-card">
+    <div class="account-banner">
+      <h2>Order confirmed</h2>
+      <p>Your brownie delivery is being prepared. Save your order number so you can track it anytime.</p>
+    </div>
+    <div class="panel-card">
+      <h3>Order #{{ order['id'] }}</h3>
+      <p><strong>Status:</strong> {{ order['status'] }}</p>
+      <p><strong>Delivery:</strong> {{ order['address'] }}, {{ order['city'] }} {{ order['postal_code'] }}</p>
+      <div>
+        {% for item in items %}
+        <div class="order-item"><span>{{ item['quantity'] }} x {{ item['product_name'] }}</span><span>{{ (item['price'] * item['quantity'])|inr }}</span></div>
+        {% endfor %}
+      </div>
+      <div class="summary-line total"><span>Total paid</span><span>{{ order['total']|inr }}</span></div>
+      <a class="button button-secondary" href="{{ url_for('track') }}?orderId={{ order['id'] }}">Track order</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

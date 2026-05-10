@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section class="section">
+  <div class="admin-banner card">
+    <h2>Admin dashboard</h2>
+    <p>Manage active orders, update delivery status, and keep the bakery running smoothly.</p>
+  </div>
+  <div class="card">
+    <table class="order-table">
+      <thead>
+        <tr>
+          <th>Order</th>
+          <th>Customer</th>
+          <th>Status</th>
+          <th>Total</th>
+          <th>Update</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in orders %}
+        <tr>
+          <td data-label="Order">#{{ order['id'] }}</td>
+          <td data-label="Customer">{{ order['customer_name'] or 'Guest' }}</td>
+          <td data-label="Status">{{ order['status'] }}</td>
+          <td data-label="Total">{{ order['total']|inr }}</td>
+          <td data-label="Update">
+            <select class="status-select" data-order="{{ order['id'] }}">
+              <option value="Preparing" {% if order['status'] == 'Preparing' %}selected{% endif %}>Preparing</option>
+              <option value="Out for delivery" {% if order['status'] == 'Out for delivery' %}selected{% endif %}>Out for delivery</option>
+              <option value="Delivered" {% if order['status'] == 'Delivered' %}selected{% endif %}>Delivered</option>
+            </select>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.status-select').forEach((select) => {
+      select.addEventListener('change', (event) => {
+        const orderId = event.target.dataset.order;
+        const status = event.target.value;
+        fetch('{{ url_for('admin_update_status') }}', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ orderId, status })
+        }).then((res) => res.json()).then((data) => {
+          if (!data.success) {
+            alert('Unable to update the order status.' );
+          }
+        });
+      });
+    });
+  });
+</script>
+{% endblock %}

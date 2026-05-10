@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section class="section">
+  <div class="panel-card">
+    <div class="section-title">
+      <div>
+        <h2>Track your delivery</h2>
+        <p>Enter your order number and watch your brownie box move closer to your door.</p>
+      </div>
+    </div>
+    <form class="form-group" method="get" action="{{ url_for('track') }}">
+      <label>Order number<input type="text" name="orderId" placeholder="123" required {% if order %} value="{{ order['id'] }}" {% endif %}></label>
+      <button class="button button-primary" type="submit">Check status</button>
+    </form>
+    {% if message %}
+    <div class="form-message">{{ message }}</div>
+    {% endif %}
+    {% if order %}
+    <div class="panel-card" style="margin-top:20px;">
+      <h3>Order #{{ order['id'] }}</h3>
+      <p><strong>Status:</strong> {{ order['status'] }}</p>
+      <p><strong>Name:</strong> {{ order['customer_name'] }}</p>
+      <p><strong>Delivering to:</strong> {{ order['address'] }}, {{ order['city'] }} {{ order['postal_code'] }}</p>
+      <div class="features-grid" style="grid-template-columns: repeat(3, minmax(150px, 1fr)); margin-top:20px;">
+        <div class="feature-card"><strong>Preparing</strong><p>Kitchen is baking your fresh brownie order.</p></div>
+        <div class="feature-card"><strong>Out for delivery</strong><p>Courier is heading to your location in a pretty pink box.</p></div>
+        <div class="feature-card"><strong>Delivered</strong><p>Your order has arrived. Time to celebrate.</p></div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

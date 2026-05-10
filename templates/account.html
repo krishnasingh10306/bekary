@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section class="section">
+  <div class="account-banner card">
+    <h2>Welcome back, {{ g.current_user.name }}.</h2>
+    <p>Check your latest brownie deliveries, manage orders, and continue shopping for fresh treats.</p>
+  </div>
+  <div class="card">
+    {% if not orders %}
+      <p>You don't have any orders yet. Start your delicious first order now.</p>
+      <a class="button button-primary" href="{{ url_for('menu') }}">Browse brownies</a>
+    {% else %}
+      <table class="order-table">
+        <thead>
+          <tr>
+            <th>Order</th>
+            <th>Status</th>
+            <th>Total</th>
+            <th>Track</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for order in orders %}
+          <tr>
+            <td data-label="Order">#{{ order['id'] }}</td>
+            <td data-label="Status">{{ order['status'] }}</td>
+            <td data-label="Total">{{ order['total']|inr }}</td>
+            <td data-label="Track"><a class="button button-secondary" href="{{ url_for('track') }}?orderId={{ order['id'] }}">Track</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,180 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-text">
+      <span class="hero-badge">Baked fresh every morning</span>
+      <h1>Small batch brownies with a polished bakery finish.</h1>
+      <p>Rich chocolate, balanced flavors, and gift-ready presentation. Order signature brownies for celebrations, office treats, or a quiet excellent dessert at home.</p>
+      <div class="hero-buttons">
+        <a class="button button-primary" href="{{ url_for('menu') }}">Explore Menu</a>
+        <a class="button button-secondary" href="{{ url_for('about') }}">Our Story</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <div class="hero-image-slider" id="heroImageSlider" aria-label="Featured cake image slider">
+        <div class="hero-image-viewport">
+          <div class="hero-image-track" id="heroImageTrack">
+            <img class="hero-image-slide" src="/static/images/pink-brownie-photo-1.png" alt="Pink frosted brownie dessert">
+            <img class="hero-image-slide" src="/static/images/cake-mango.png" alt="Mango celebration cake">
+            <img class="hero-image-slide" src="/static/images/cake-chocolate.png" alt="Chocolate cake">
+            <img class="hero-image-slide" src="/static/images/cake-red-velvet.png" alt="Red velvet cake">
+            <img class="hero-image-slide" src="/static/images/cake-fruit.png" alt="Fresh fruit cake">
+            <img class="hero-image-slide" src="/static/images/cake-black-forest.png" alt="Black forest cake">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section features-section">
+  <div class="section-title">
+    <div>
+      <h2>A better brownie experience</h2>
+      <p>Every detail is designed for flavor, presentation, and reliable delivery.</p>
+    </div>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon"></div>
+      <h3>Artisan batches</h3>
+      <p>We bake in small batches so every brownie has a fudgy center, clean edges, and consistent finish.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"></div>
+      <h3>Premium ingredients</h3>
+      <p>Real chocolate, fresh dairy, toasted nuts, fruit ribbons, and careful toppings in every flavor.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"></div>
+      <h3>Gift-ready packaging</h3>
+      <p>Elegant boxes and neat presentation make every order feel considered before the first bite.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"></div>
+      <h3>Tracked delivery</h3>
+      <p>Checkout, order confirmation, and delivery tracking are built into the site for a smooth customer flow.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section variety-section">
+  <div class="section-title">
+    <div>
+      <h2>Brownie varieties</h2>
+      <p>Choose by mood, occasion, or flavor style. Every variety is made in small batches with a soft, gift-ready finish.</p>
+    </div>
+  </div>
+  <div class="variety-grid">
+    <article class="variety-card">
+      <img src="/static/images/pink-brownie-photo-1.png" alt="Signature pink brownie variety">
+      <div class="variety-content">
+        <span>Signature</span>
+        <h3>Pink Velvet</h3>
+        <p>Soft strawberry notes, pink frosting, sprinkles, and a pretty bakery finish.</p>
+      </div>
+    </article>
+    <article class="variety-card">
+      <img src="/static/images/cake-chocolate.png" alt="Classic chocolate brownie variety">
+      <div class="variety-content">
+        <span>Classic</span>
+        <h3>Chocolate Fudge</h3>
+        <p>Deep cocoa, glossy ganache, and a rich fudgy center for chocolate lovers.</p>
+      </div>
+    </article>
+    <article class="variety-card">
+      <img src="/static/images/pink-brownie-photo-3.png" alt="Caramel brownie variety">
+      <div class="variety-content">
+        <span>Caramel</span>
+        <h3>Salted Swirl</h3>
+        <p>Buttery caramel ribbons, sea salt, and a warm dessert-shop flavor.</p>
+      </div>
+    </article>
+    <article class="variety-card">
+      <img src="/static/images/cake-red-velvet.png" alt="Berry brownie variety">
+      <div class="variety-content">
+        <span>Berry</span>
+        <h3>Raspberry Cream</h3>
+        <p>Bright berry filling, cream topping, and a fresh pink celebration look.</p>
+      </div>
+    </article>
+    <article class="variety-card">
+      <img src="/static/images/cake-mango.png" alt="Nutty brownie variety">
+      <div class="variety-content">
+        <span>Nutty</span>
+        <h3>Hazelnut Crunch</h3>
+        <p>Toasted nuts, chocolate drizzle, and a crunchy bite balanced with soft fudge.</p>
+      </div>
+    </article>
+    <article class="variety-card">
+      <img src="/static/images/pink-brownie-photo-2.png" alt="Gift box brownie variety">
+      <div class="variety-content">
+        <span>Gifting</span>
+        <h3>Party Box</h3>
+        <p>A mixed box of pretty brownie flavors for birthdays, teams, and sweet surprises.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="section popular-section">
+  <div class="section-title">
+    <div>
+      <h2>Customer favorites</h2>
+      <p>Our most requested brownies, selected for rich flavor and reliable crowd appeal.</p>
+    </div>
+  </div>
+  <div class="product-grid">
+    {% for product in products[:4] %}
+    <article class="product-card">
+      <img class="card-photo" src="{{ product.image }}" alt="{{ product.name }}">
+      <div class="product-content">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.description }}</p>
+        <div class="product-row">
+          <strong>{{ product.price|inr }}</strong>
+          <button class="add-button" onclick="addToCart({{ product.id }})">Add to Cart</button>
+        </div>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+  <div class="text-center" style="margin-top: 34px;">
+    <a class="button button-primary" href="{{ url_for('menu') }}">View All Brownies</a>
+  </div>
+</section>
+
+<section class="section gallery-section">
+  <div class="section-title">
+    <div>
+      <h2>Fresh from the counter</h2>
+      <p>A look at the textures, toppings, and finishes customers can expect.</p>
+    </div>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item"><img src="/static/images/cake-mango.png" alt="Mango celebration cake"></div>
+    <div class="gallery-item"><img src="/static/images/cake-chocolate.png" alt="Glossy chocolate cake"></div>
+    <div class="gallery-item"><img src="/static/images/cake-red-velvet.png" alt="Red velvet cake"></div>
+    <div class="gallery-item"><img src="/static/images/cake-fruit.png" alt="Fresh fruit cake"></div>
+    <div class="gallery-item"><img src="/static/images/cake-black-forest.png" alt="Black forest cake"></div>
+    <div class="gallery-item"><img src="/static/images/pink-brownie-photo-4.png" alt="Raspberry caramel brownie stack"></div>
+  </div>
+</section>
+
+<section class="section cta-section">
+  <div class="cta-card">
+    <div class="cta-content">
+      <h2>Ready for a proper brownie box?</h2>
+      <p>Choose your flavors, add them to cart, and complete checkout in minutes.</p>
+      <div class="cta-buttons">
+        <a class="button button-primary" href="{{ url_for('menu') }}">Order Now</a>
+        <a class="button button-secondary" href="{{ url_for('login') }}">Sign In</a>
+      </div>
+    </div>
+    <div class="cta-visual" aria-hidden="true">
+      <img src="/static/images/cake-fruit.png" alt="">
+    </div>
+  </div>
+</section>
+{% endblock %}
