@@ -565,12 +565,14 @@ p {
 }
 
 .variety-grid {
-  grid-template-columns: repeat(3, minmax(min(250px, 100%), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  align-items: stretch;
 }
 
 .variety-card {
   display: grid;
   grid-template-rows: auto 1fr;
+  min-width: 0;
 }
 
 .variety-card img {
@@ -582,6 +584,7 @@ p {
 
 .variety-content {
   padding: 22px;
+  min-width: 0;
 }
 
 .variety-content span {
@@ -1166,6 +1169,30 @@ select:focus {
   }
 }
 
+@media (max-width: 760px) {
+  .variety-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .variety-card {
+    grid-template-columns: minmax(130px, 38%) minmax(0, 1fr);
+    grid-template-rows: auto;
+  }
+
+  .variety-card img {
+    height: 100%;
+    min-height: 180px;
+    aspect-ratio: auto;
+  }
+
+  .variety-content {
+    display: flex;
+    min-height: 180px;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
 @media (max-width: 620px) {
   .nav-inner,
   .section,
@@ -1210,7 +1237,6 @@ select:focus {
   .features-grid,
   .product-grid,
   .gallery-grid,
-  .variety-grid,
   .menu-grid {
     grid-template-columns: 1fr;
   }
@@ -1255,10 +1281,23 @@ select:focus {
   .feature-card,
   .value-card,
   .story-panel,
-  .variety-content,
   .cake-variety-content,
   .panel-card,
   .card {
+    padding: 20px;
+  }
+
+  .variety-card {
+    grid-template-columns: 1fr;
+  }
+
+  .variety-card img {
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+  }
+
+  .variety-content {
+    min-height: 0;
     padding: 20px;
   }
 
